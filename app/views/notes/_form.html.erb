@@ -1,0 +1,31 @@
+<div class="col-md-5">
+  <%= form_for(@note, html: {role: 'form'}) do |f| %>
+    <% if @note.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>
+
+        <ul>
+        <% @note.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control', placeholder: 'Nombre' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: 'form-control', placeholder: 'Descripción' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :picture %>
+      <%= f.file_field :picture %>
+    </div>
+
+    <%= f.submit class: 'btn btn-default' %>
+    <%= link_to 'Back', notes_path, class: 'btn btn-danger' %>
+  <% end %>
+</div>

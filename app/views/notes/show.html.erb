@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col-md-9">
+    <%= image_tag(@note.picture_url, width: '100%') if @note.picture.present? %>
+  </div>
+
+  <div class="col-md-3">
+    <p><b>Name: </b><%= @note.name %></p>
+    <p><b>Description: </b><%= @note.description %></p>
+    <p>
+      <% if current_user.notes.include? @note %>
+        <%= link_to 'Edit', edit_note_path(@note) %> |
+        <%= link_to 'Destroy', @note, data: { confirm: 'Are you sure?' }, method: :delete %> |
+      <% end %>
+      <%= link_to 'Back', note_path %>
+    </p>
+  </div>
+</div>
+<%= commontator_thread(@note) %>
